@@ -4,47 +4,53 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faHome, faCalendarDays} from '@fortawesome/free-solid-svg-icons';
+import { Provider } from 'react-redux';
+
+import HomePage from './src/pages/HomePage';
+import Calendar from './src/pages/Calendar';
+import { store } from './src/redux/store';
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <Text style={styles.title}>Генеральний штаб ЗС України інформує</Text>
-      <LinearGradient
-        style={styles.linearGradient}
-        colors={['#4c669f', '#3b5998', '#192f6a']}>
-        <Text styles={styles.buttonText}>
-          Загальні бойові втрати російського окупанта
-        </Text>
-      </LinearGradient>
-    </SafeAreaView>
+    <Provider store={store}>
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={{tabBarActiveTintColor: '#0057b8', headerShown: false}}>
+        <Tab.Screen
+          name="Home"
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color}) => (
+              <FontAwesomeIcon icon={faHome} color={color} />
+            ),
+            tabBarStyle: {backgroundColor: '#FFD600'},
+          }}
+          component={HomePage}
+        />
+        <Tab.Screen
+          name="Calendar"
+          options={{
+            tabBarLabel: 'Calendar',
+            tabBarIcon: ({color}) => (
+              <FontAwesomeIcon icon={faCalendarDays} color={color} />
+            ),
+          }}
+          component={Calendar}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+    </Provider>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  title: {
-    color: 'black',
-    fontSize: 24,
-    textAlign: 'center'
-  },
-  //   linearGradient: {
-  //     flex: 1,
-  //     paddingLeft: 15,
-  //     paddingRight: 15,
-  //     borderRadius: 5,
-  //   },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'Roboto',
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-  },
-});
+
 
 export default App;
