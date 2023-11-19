@@ -24,11 +24,11 @@ export const Header = () => {
 
   const nameMonth = monthName[month]
 
-  const dispatch = useDispatch()
-  const currentDay = useSelector(state => state.stats.currentDay.data.current_day)
-  useEffect(() => {
-    dispatch(getCurrentDay())
-  }, [])
+  // const dispatch = useDispatch()
+  // const currentDay = useSelector(state => state.stats.currentDay.data.current_day)
+  // useEffect(() => {
+  //   dispatch(getCurrentDay())
+  // }, [])
   
 
   return (
@@ -39,7 +39,7 @@ export const Header = () => {
       </Text>
       <View style={styles.blockData}>
         <Text style={styles.data}>{day} {nameMonth}</Text> 
-        <Text style={styles.day}>{currentDay}-й день війни</Text>
+        {/* <Text style={styles.day}>{currentDay}-й день війни</Text> */}
       </View>
     </View>
   );

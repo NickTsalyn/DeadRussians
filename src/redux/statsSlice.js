@@ -9,11 +9,6 @@ const storeSlice = createSlice({
     error: false,
     currentDay: '',
   },
-  reducers: {
-    addStats(state, action) {
-      state = action.payload;
-    },
-  },
   extraReducers: {
     [getData.pending]: (state, action) => {
       state.error = null;
@@ -46,6 +41,6 @@ const storeSlice = createSlice({
   },
 });
 
-export const {addStats} = storeSlice.actions;
+// export const {addStats} = storeSlice.actions;
 
 export default storeSlice.reducer;

@@ -18,6 +18,6 @@ const dateSlice = createSlice({
   },
 });
 
-export const {changeDate} = dateSlice.actions;
+// export const {changeDate} = dateSlice.actions;
 
 export default dateSlice.reducer;

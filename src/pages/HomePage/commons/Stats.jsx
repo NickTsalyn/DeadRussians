@@ -16,6 +16,7 @@ const Stats = () => {
 
 
     const statsObj = stats.stats;
+    // console.log(statsObj)
     const increaseObj = Object.entries(stats.increase)
     const termsObj = Object.entries(terms)
 
