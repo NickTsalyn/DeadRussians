@@ -7,12 +7,7 @@ import {useDispatch} from 'react-redux';
 import {addStats} from '../../redux/statsSlice';
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const test = 'test'
 
-  useEffect(() => {
-    dispatch(addStats(test));
-  });
 
   return (
     <SafeAreaView>

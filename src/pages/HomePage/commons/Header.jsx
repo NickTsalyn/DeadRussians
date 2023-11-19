@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
-
+import { getCurrentDay } from '../../../fetch/api';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Header = () => {
+  const now = new Date();
+  const monthName = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const month = now.getMonth();
+  const day = now.getDate()
+
+  const nameMonth = monthName[month]
+
+  const dispatch = useDispatch()
+  const currentDay = useSelector(state => state.stats.currentDay.data.current_day)
+  useEffect(() => {
+    dispatch(getCurrentDay())
+  }, [])
+  
+
   return (
     <View style={styles.header}>
       <Text style={styles.title}>Генеральний штаб ЗС України інформує</Text>
@@ -10,8 +38,8 @@ export const Header = () => {
         Загальні бойові втрати російського окупанта
       </Text>
       <View style={styles.blockData}>
-        <Text style={styles.data}>7 червня</Text>
-        <Text style={styles.day}>469-й день війни</Text>
+        <Text style={styles.data}>{day} {nameMonth}</Text> 
+        <Text style={styles.day}>{currentDay}-й день війни</Text>
       </View>
     </View>
   );

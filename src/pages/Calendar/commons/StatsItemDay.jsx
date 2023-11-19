@@ -1,23 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 
-export const StatsItem = ({statsAll, statsDay, icon, title}) => {
-
-
+export const StatsItemDay = ({statsAll, statsDay, terms}) => {
   return (
     <View style={styles.statsBlock}>
       <SvgUri
         width={100}
         height={50}
-        uri={icon}
+        uri={terms.icon}
       />
-      <View>
+      <View  style={styles.statsInfo}>
         <View style={styles.statsNumbers}>
           <Text style={styles.statsAll}>{statsAll}</Text>
           <Text style={styles.statsDay}>+({statsDay})</Text>
         </View>
-        <Text style={styles.statsText}>{title}</Text>
+        <Text style={styles.statsText}>{terms.title}</Text>
       </View>
     </View>
   );
@@ -26,29 +24,35 @@ export const StatsItem = ({statsAll, statsDay, icon, title}) => {
 const styles = StyleSheet.create({
   statsBlock: {
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    paddingBottom: 10,
+    justifyContent: 'space-between',
+    marginTop: 5,
+    marginLeft: 10,
+    borderWidth: 1,
+    padding: 5,
+    // backgroundColor: 'red',
+    width: 200,
+    height: 120,
+    flex: 1
+
   },
   statsImage: {
-    height: 75,
-    width: 85,
+    height: 40,
+    width: 35,
     marginRight: 30,
     marginLeft: 10,
   },
   statsAll: {
     color: 'black',
-    fontSize: 24,
+    fontSize: 15,
   },
   statsDay: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 13,
   },
   statsText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 12,
   },
   statsNumbers: {
     display: 'flex',
@@ -56,6 +60,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
+  statsInfo: {
+    flex: 1,
+  }
 });
 
-export default StatsItem;
+export default StatsItemDay;

@@ -3,21 +3,24 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome, faCalendarDays} from '@fortawesome/free-solid-svg-icons';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 
 import HomePage from './src/pages/HomePage';
 import Calendar from './src/pages/Calendar';
 import { store } from './src/redux/store';
+import { getData } from './src/fetch/api';
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+    
+
   return (
     <Provider store={store}>
     <NavigationContainer>

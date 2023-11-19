@@ -1,11 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Calendar, LocaleConfig} from 'react-native-calendars';
+import { useDispatch } from 'react-redux';
+import { changeDate } from '../../../redux/dateSlice';
+import { getDataByDate } from '../../../fetch/api';
 
 const CalendarItem = () => {
+  const [selected, setSelected] = useState('');
+
+  const dispatch = useDispatch()
+
+  const setDate = day => {
+    setSelected(day.dateString)
+    dispatch(getDataByDate(day.dateString))
+    console.log(day)
+  }
+
+
+
   return (
     <SafeAreaView style={styles.calendarBlock}>
-      <Text style={styles.calendarDay}>8 June</Text>
-      <View style={styles.calendar}></View>
+      <Text style={styles.calendarDay}>{selected}</Text>
+      <View style={styles.calendar}>
+        <Calendar
+          onDayPress={day => {
+            setDate(day)
+          }}
+          markedDates={{
+            [selected]: {
+              selected: true,
+              disableTouchEvent: true,
+              selectedDotColor: 'orange',
+            },
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -17,17 +46,15 @@ const styles = StyleSheet.create({
   calendarBlock: {
     padding: 5,
     display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flexDirection: 'column',
+    height: 400
   },
   calendarDay: {
     fontSize: 24,
     color: 'white',
     fontWeight: '900',
     padding: 10,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default CalendarItem;
